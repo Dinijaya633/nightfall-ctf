@@ -1,7 +1,16 @@
-.env
-*.log
-__pycache__/
-*.pyc
-.vscode/
-.idea/
+# macOS
 .DS_Store
+
+# Local backups
+docker-compose.yml.backup-before-nf01
+
+# NIGHTFALL author/build material containing challenge solutions
+challenge-osint/build-source/
+challenge-osint/manifest.txt
+
+# Local challenge-author tooling
+tools/
+
+# IntelliJ IDEA
+.idea/
+*.iml

@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /archive/
+Disallow: /internal-preview/
+
+# Legacy engineering material is excluded from indexing.
