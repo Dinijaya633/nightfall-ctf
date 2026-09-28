@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Incident Review Portal | Cygnus Labs</title>
+
+    <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/style.css') }}"
+    >
+</head>
+
+<body class="login-page">
+
+<div class="login-background">
+    <div class="grid-overlay"></div>
+    <div class="glow glow-one"></div>
+    <div class="glow glow-two"></div>
+</div>
+
+<main class="login-shell">
+
+    <section class="login-brand-panel">
+
+        <div class="brand">
+            <div class="brand-mark">C</div>
+
+            <div>
+                <div class="brand-name">CYGNUS LABS</div>
+                <div class="brand-subtitle">SECURE OPERATIONS</div>
+            </div>
+        </div>
+
+        <div class="brand-content">
+
+            <div class="system-label">
+                INCIDENT MANAGEMENT NETWORK
+            </div>
+
+            <h1>
+                Incident<br>
+                Review Portal
+            </h1>
+
+            <p class="brand-description">
+                Authorized personnel may review assigned operational
+                incidents, field reports and engineering records through
+                this system.
+            </p>
+
+            <div class="system-status">
+
+                <div class="status-item">
+                    <span class="status-dot"></span>
+                    <span>Gateway Online</span>
+                </div>
+
+                <div class="status-item">
+                    <span class="status-dot"></span>
+                    <span>Secure Session Available</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="classification">
+            CYGNUS INTERNAL SYSTEM // AUTHORIZED ACCESS ONLY
+        </div>
+
+    </section>
+
+
+    <section class="login-form-panel">
+
+        <div
+                class="login-card {% if error %}login-error{% endif %}"
+                id="loginCard"
+        >
+
+            <div class="card-header">
+
+                <div class="security-icon">
+                    <span></span>
+                </div>
+
+                <div>
+                    <div class="card-eyebrow">IDENTITY VERIFICATION</div>
+                    <h2>Operator Sign In</h2>
+                </div>
+
+            </div>
+
+            <p class="login-instruction">
+                Enter the credentials assigned to your incident workspace.
+            </p>
+
+
+            {% if error %}
+
+            <div class="error-message" id="loginError">
+
+                <div class="error-symbol">!</div>
+
+                <div>
+                    <strong>ACCESS DENIED</strong>
+                    <span>{{ error }}</span>
+                </div>
+
+            </div>
+
+            {% endif %}
+
+
+            <form method="POST" class="login-form">
+
+                <div class="form-group">
+
+                    <label for="username">
+                        OPERATOR ID
+                    </label>
+
+                    <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Enter operator ID"
+                            autocomplete="username"
+                            required
+                            autofocus
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="password">
+                        ACCESS CREDENTIAL
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter access credential"
+                                autocomplete="current-password"
+                                required
+                        >
+
+                        <button
+                                type="button"
+                                class="password-toggle"
+                                id="passwordToggle"
+                                aria-label="Show password"
+                        >
+                            SHOW
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button type="submit" class="login-button">
+
+                    <span>AUTHENTICATE</span>
+                    <span class="button-arrow">→</span>
+
+                </button>
+
+            </form>
+
+
+            <div class="login-footer">
+
+                <div class="footer-line"></div>
+
+                <p>
+                    Access attempts are recorded by Cygnus Security
+                    Operations.
+                </p>
+
+                <span>IRP NODE 03 // BUILD 7.21</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+
+</body>
+</html>

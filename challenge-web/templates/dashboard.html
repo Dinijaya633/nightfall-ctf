@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Workspace | Cygnus Labs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="portal-page">
+
+<header class="portal-header">
+    <div class="portal-container header-row">
+        <div class="brand">
+            <div class="brand-mark">C</div>
+            <div>
+                <div class="brand-name">CYGNUS LABS</div>
+                <div class="brand-subtitle">INCIDENT REVIEW PORTAL</div>
+            </div>
+        </div>
+
+        <div class="operator-nav">
+            <div class="operator-info">
+                <span class="operator-status"></span>
+                <div>
+                    <strong>{{ user.display_name }}</strong>
+                    <span>{{ user.clearance }}</span>
+                </div>
+            </div>
+
+            <a href="{{ url_for('logout') }}" class="logout-button">
+                SIGN OUT
+            </a>
+        </div>
+    </div>
+</header>
+
+
+<main class="portal-container dashboard-main">
+
+    <section class="dashboard-heading">
+        <div>
+            <p class="portal-eyebrow">FIELD OPERATIONS / INCIDENT MANAGEMENT</p>
+            <h1>Assigned Incidents</h1>
+            <p>
+                Review incident records currently assigned to your
+                operational account.
+            </p>
+        </div>
+
+        <div class="clearance-card">
+            <span>SESSION CLEARANCE</span>
+            <strong>{{ user.clearance }}</strong>
+        </div>
+    </section>
+
+
+    <section class="dashboard-stats">
+
+        <div class="stat-card">
+            <span>ASSIGNED RECORDS</span>
+            <strong>{{ incidents|length }}</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>WORKSPACE</span>
+            <strong>FIELD OPS</strong>
+        </div>
+
+        <div class="stat-card">
+            <span>SESSION</span>
+            <strong class="online-text">ACTIVE</strong>
+        </div>
+
+    </section>
+
+
+    <section class="records-panel">
+
+        <div class="panel-heading">
+            <div>
+                <span class="panel-label">INCIDENT QUEUE</span>
+                <h2>Your assigned records</h2>
+            </div>
+
+            <span class="record-count">
+                {{ incidents|length }} RECORD{% if incidents|length != 1 %}S{% endif %}
+            </span>
+        </div>
+
+
+        <div class="records-table-wrapper">
+
+            <table class="records-table">
+
+                <thead>
+                <tr>
+                    <th>RECORD</th>
+                    <th>INCIDENT</th>
+                    <th>CLASSIFICATION</th>
+                    <th>STATUS</th>
+                    <th></th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                {% for incident in incidents %}
+
+                <tr>
+                    <td class="record-id">
+                        IR-{{ incident.id }}
+                    </td>
+
+                    <td>
+                        <strong>{{ incident.title }}</strong>
+                        <span>{{ incident.location }}</span>
+                    </td>
+
+                    <td>
+                            <span class="classification-badge field">
+                                {{ incident.classification }}
+                            </span>
+                    </td>
+
+                    <td>
+                            <span class="status-badge">
+                                <span class="status-dot-small"></span>
+                                {{ incident.status }}
+                            </span>
+                    </td>
+
+                    <td class="table-action">
+                        <a href="{{ url_for('incident_record', incident_id=incident.id) }}">
+                            REVIEW →
+                        </a>
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <section class="workspace-notice">
+
+        <div class="notice-icon">i</div>
+
+        <div>
+            <strong>WORKSPACE NOTICE</strong>
+            <p>
+                Only records assigned to your operational account are
+                displayed in this workspace. Record references are generated
+                by the Incident Review service.
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="portal-footer">
+    <div class="portal-container footer-row">
+        <span>CYGNUS LABS // INTERNAL SYSTEM</span>
+        <span>IRP NODE 03 // SESSION ACTIVE</span>
+    </div>
+</footer>
+
+</body>
+</html>
