@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        {% if incident %}
+        IR-{{ incident.id }} | Cygnus Labs
+        {% else %}
+        Record Not Found | Cygnus Labs
+        {% endif %}
+    </title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="portal-page">
+
+<header class="portal-header">
+
+    <div class="portal-container header-row">
+
+        <div class="brand">
+            <div class="brand-mark">C</div>
+
+            <div>
+                <div class="brand-name">CYGNUS LABS</div>
+                <div class="brand-subtitle">INCIDENT REVIEW PORTAL</div>
+            </div>
+        </div>
+
+
+        <div class="operator-nav">
+
+            <div class="operator-info">
+                <span class="operator-status"></span>
+
+                <div>
+                    <strong>{{ user.display_name }}</strong>
+                    <span>{{ user.clearance }}</span>
+                </div>
+            </div>
+
+            <a href="{{ url_for('logout') }}" class="logout-button">
+                SIGN OUT
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="portal-container incident-main">
+
+    <a href="{{ url_for('dashboard') }}" class="back-link">
+        ← RETURN TO ASSIGNED INCIDENTS
+    </a>
+
+
+    {% if incident %}
+
+    <section class="incident-heading">
+
+        <div>
+
+            <div class="record-reference">
+                INCIDENT RECORD / IR-{{ incident.id }}
+            </div>
+
+            <h1>{{ incident.title }}</h1>
+
+            <div class="incident-badges">
+
+                <span class="classification-badge
+                    {% if incident.classification == 'RESTRICTED' %}
+                        restricted
+                    {% else %}
+                        field
+                    {% endif %}
+                ">
+                    {{ incident.classification }}
+                </span>
+
+                <span class="status-badge">
+                    <span class="status-dot-small"></span>
+                    {{ incident.status }}
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    {% if incident.classification == "RESTRICTED" %}
+
+    <div class="restricted-banner">
+
+        <div class="restricted-symbol">!</div>
+
+        <div>
+            <strong>RESTRICTED PROGRAMME RECORD</strong>
+            <p>
+                This record contains information associated with a
+                restricted Cygnus engineering programme.
+            </p>
+        </div>
+
+    </div>
+
+    {% endif %}
+
+
+    <section class="incident-grid">
+
+        <article class="incident-content">
+
+            <div class="content-section">
+
+                <span class="section-label">INCIDENT SUMMARY</span>
+
+                <p>
+                    {{ incident.summary }}
+                </p>
+
+            </div>
+
+
+            <div class="content-section">
+
+                <span class="section-label">REVIEW NOTES</span>
+
+                <p>
+                    {{ incident.notes }}
+                </p>
+
+            </div>
+
+
+            {% if incident.flag %}
+
+            <div class="evidence-block">
+
+                <div class="evidence-heading">
+                    <span>RECOVERED NIGHTFALL ARTEFACT</span>
+                    <span class="evidence-status">VERIFIED</span>
+                </div>
+
+                <p class="flag-value">
+                    {{ incident.flag }}
+                </p>
+
+                <p class="evidence-description">
+                    Submit this verification token to the NIGHTFALL
+                    competition platform.
+                </p>
+
+            </div>
+
+            {% endif %}
+		            {% if incident.handoff %}
+
+            <div class="evidence-block">
+
+                <div class="evidence-heading">
+                    <span>NF04 INVESTIGATION HAND-OFF</span>
+                    <span class="evidence-status">RELEASED</span>
+                </div>
+
+                <p class="evidence-description">
+                    The following evidence references were recovered from
+                    the restricted incident record. Preserve these values
+                    for the next stage of the investigation.
+                </p>
+
+                <div class="metadata-row">
+                    <span>Case ID</span>
+                    <strong>{{ incident.handoff.case_id }}</strong>
+                </div>
+
+                <div class="metadata-row">
+                    <span>Evidence Bundle</span>
+                    <strong>{{ incident.handoff.evidence_bundle }}</strong>
+                </div>
+
+                <div class="metadata-row">
+                    <span>Supporting Log</span>
+                    <strong>{{ incident.handoff.supporting_log }}</strong>
+                </div>
+
+                <div class="metadata-row">
+                    <span>Investigation Window</span>
+                    <strong>{{ incident.handoff.time_window }}</strong>
+                </div>
+
+            </div>
+
+            {% endif %}
+
+        </article>
+
+
+        <aside class="incident-metadata">
+
+            <div class="metadata-heading">
+                RECORD METADATA
+            </div>
+
+            <div class="metadata-row">
+                <span>Record ID</span>
+                <strong>IR-{{ incident.id }}</strong>
+            </div>
+
+            <div class="metadata-row">
+                <span>Owner</span>
+                <strong>{{ incident.owner }}</strong>
+            </div>
+
+            <div class="metadata-row">
+                <span>Location</span>
+                <strong>{{ incident.location }}</strong>
+            </div>
+
+            <div class="metadata-row">
+                <span>Classification</span>
+                <strong>{{ incident.classification }}</strong>
+            </div>
+
+            <div class="metadata-row">
+                <span>Status</span>
+                <strong>{{ incident.status }}</strong>
+            </div>
+
+            <div class="metadata-row">
+                <span>Viewing As</span>
+                <strong>{{ user.clearance }}</strong>
+            </div>
+
+        </aside>
+
+    </section>
+
+
+    {% else %}
+
+    <section class="not-found-panel">
+
+        <div class="not-found-code">404</div>
+
+        <h1>Incident record unavailable</h1>
+
+        <p>
+            The requested incident reference does not exist in the
+            current review service.
+        </p>
+
+        <a href="{{ url_for('dashboard') }}" class="return-button">
+            RETURN TO WORKSPACE
+        </a>
+
+    </section>
+
+    {% endif %}
+
+</main>
+
+
+<footer class="portal-footer">
+
+    <div class="portal-container footer-row">
+        <span>CYGNUS LABS // INTERNAL SYSTEM</span>
+        <span>INCIDENT REVIEW SERVICE</span>
+    </div>
+
+</footer>
+
+</body>
+</html>

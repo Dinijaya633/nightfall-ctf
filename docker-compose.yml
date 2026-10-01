@@ -37,6 +37,21 @@ services:
     cpus: 0.50
 
   # =========================
+  # NF01 / NF02 OSINT SERVICE
+  # =========================
+  challenge-osint:
+    build:
+      context: ./challenge-osint
+    container_name: nightfall-challenge-osint
+    restart: unless-stopped
+    ports:
+      - "8082:80"
+    networks:
+      - challenge_front
+    mem_limit: 128m
+    cpus: 0.25
+
+  # =========================
   # NF03 CHALLENGE
   # =========================
   challenge-web:
@@ -100,6 +115,10 @@ services:
     mem_limit: 128m
     cpus: 0.25
 
+
+# =========================
+# NETWORKS
+# =========================
 networks:
 
   ctfd_front:
