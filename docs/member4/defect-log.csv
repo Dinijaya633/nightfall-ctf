@@ -1,0 +1,10 @@
+defect_id,severity,test_id,summary,owner,status,retest_result
+D001,Critical,T04,Hard-coded flags/credentials/control secrets in repository,Relevant owners,OPEN,
+D002,High,T08,NF04 evidence artefacts missing,Member 3,OPEN,
+D003,High,T09,NF05 crypto artefacts missing,Member 3,OPEN,
+D004,High,T10,NF06 designed privilege path/final flag not implemented,Member 3,OPEN,
+D005,Medium,T03,CTFd challenge metadata/requirements not versioned or evidenced,Member 4,OPEN,
+D006,Medium,T15,OSINT host port 8082 differs from approved architecture description,Member 1 + Member 4,OPEN,
+D007,Low,T15,README service count/table inconsistent with Compose,Member 4,OPEN,
+D008,Medium,T11,Stale challenge_front backup shows Internal=false,Member 1 + Member 4,OPEN,
+D009,Medium,T04,Repository ignore rules did not cover common secret/backup files,Member 4,FIXED_PENDING_REVIEW,
