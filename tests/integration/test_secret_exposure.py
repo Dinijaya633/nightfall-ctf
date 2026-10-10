@@ -10,7 +10,8 @@ patterns = [
     ("hard-coded Flask secret", re.compile(r"secret_key\s*=\s*[\"'][^\"']+[\"']")),
     ("hard-coded password field", re.compile(r"[\"']password[\"']\s*:\s*[\"'][^\"']+[\"']")),
     ("Dockerfile chpasswd secret", re.compile(r"echo\s+[\"'][^\"']+:[^\"']+[\"']\s*\|\s*chpasswd")),
-    ("Compose DB password", re.compile(r"(?:MYSQL_ROOT_PASSWORD|MYSQL_PASSWORD|DATABASE_URL)\s*=?.*?(?:password|://)[^\s]*", re.I)),
+    ("Compose DB password", re.compile(r"(?:MYSQL_ROOT_PASSWORD|MYSQL_PASSWORD)\s*=\s*(?!\$\{)[^\s]+", re.I)),
+    ("Compose DB password", re.compile(r"DATABASE_URL\s*=\s*(?![^\r\n]*\$\{)[^\s]+", re.I)),
 ]
 findings = []
 for p in ROOT.rglob("*"):

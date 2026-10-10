@@ -1,20 +1,17 @@
-date,test_id,tester,commit,environment,result,evidence,defect_id,note
-
-
-
-2026-10-10,T01,Hashen,,Local Docker + CTFd,PARTIAL,evidence/T01-ctfd-dashboard.png,,CTFd loads successfully on localhost:8000; unauthorized-source blocking not yet tested
-2026-10-10,T02,Hashen,,Local Docker + CTFd,PASS,evidence/T02-account-separation.png,,Normal participant could not access administrator functions; /admin redirected to login
-2026-10-10,T03,Hashen,,Local Docker + CTFd,PASS,evidence/T03-before-prerequisite.png; evidence/T03-after-NF01.png; evidence/T03-after-NF02.png,,NF02 was hidden before NF01 and unlocked after NF01; NF03 was hidden before NF02 and unlocked after NF02
-2026-10-10,T04,Hashen,,Local Docker + CTFd,PASS,evidence/T04-wrong-flag.png; evidence/T04-correct-flag.png,,Altered case and wrong-stage values were rejected; exact configured flag was accepted
-,T05,,,,NOT RUN,,,NF01/NF02 source present; live/steghide verification still required
-,T06,,,,NOT RUN,,,NF03 code path present; live test required
-,T07,,,,NOT RUN,,,NF03 code path present; live negative test required
-2026-10-10,T08,Hashen,,Local Docker + CTFd,FAIL,evidence/T08-nf04-stream.png,D010,NF04 packet/log hand-off is recoverable but artifact-derived proof does not match the configured CTFd flag
-2026-10-10,T09,Hashen,,Local Docker + CTFd,BLOCKED,,D011,NF05 artefacts are present but reference solver or complete encrypted-file format specification is still missing
-2026-10-10,T10,Hashen,,Local Docker + CTFd,PARTIAL,,,"NF06 container starts; sudo exists; final flag file exists; intended escalation and alternative-path testing still required"
-,T11,,,,NOT RUN,,,Live Docker network test required
-,T12,,,,NOT RUN,,,Live Docker resource test required
-2026-10-10,T13,Hashen,,Local Docker + CTFd,PASS,,,Web container was recreated; temporary state was removed and service returned successfully with expected redirect
-2026-10-10,T14,Hashen,,Local Docker + CTFd,PASS,,,Linux container was destroyed and recreated; temporary state was removed while sudo and final flag state returned correctly
-2026-10-10,T15,Hashen,,Local Docker + CTFd,BLOCKED,,D006;D010;D011,End-to-end release path cannot pass until host-port and NF04/NF05 defects are resolved
-2026-10-10,T16,Hashen,,Local Docker + MariaDB,PASS,,,Database backup restored into isolated ctfd_restore_test database; 26 tables, 6 challenges, 12 hints, score total and requirement counts matched the original database
+"date","test_id","tester","commit","environment","result","evidence","defect_id","note"
+"2026-10-10","T01","Hashen","","Local Docker + CTFd","PARTIAL","evidence/T01-ctfd-dashboard.png","","CTFd loads successfully on localhost:8000; unauthorized-source blocking not yet tested"
+"2026-10-10","T02","Hashen","","Local Docker + CTFd","PASS","evidence/T02-account-separation.png","","Normal participant could not access administrator functions; /admin redirected to login"
+"2026-10-10","T03","Hashen","","Local Docker + CTFd","PASS","evidence/T03-before-prerequisite.png; evidence/T03-after-NF01.png; evidence/T03-after-NF02.png","","NF02 was hidden before NF01 and unlocked after NF01; NF03 was hidden before NF02 and unlocked after NF02"
+"2026-10-10","T04","Hashen","","Local Docker + CTFd","PASS","evidence/T04-wrong-flag.png; evidence/T04-correct-flag.png","","Altered case and wrong-stage values were rejected; exact configured flag was accepted"
+"","T05","","","","NOT RUN","","","NF01/NF02 source present; live/steghide verification still required"
+"","T06","","","","NOT RUN","","","NF03 code path present; live test required"
+"","T07","","","","NOT RUN","","","NF03 code path present; live negative test required"
+"2026-10-11","T08","Hashen","","Local Docker + CTFd","PASS","evidence/T08-nf04-stream.png; evidence/D010-NF04-flag-retest-PASS.png","D010","NF04 packet/log hand-off recovered successfully; CTFd flag aligned with artifact-derived proof and participant submission was accepted as Correct"
+"2026-10-11","T09","Hashen","","Local Python + CTFd","PASS","evidence/T09-NF05-validator-PASS.png","D011","AES-GCM format documented; correct seed/date decrypted successfully and wrong seed failed authentication as expected"
+"2026-10-11","T10","Hashen","","Local Docker NF06","PASS","evidence/T10-NF06-intended-path-PASS.png","D004","Analyst could not read the final flag directly; sudo permission was limited to logreview; writable helper path successfully reached the root-only final flag"
+"2026-10-11","T11","Hashen","","Local Docker","PASS","evidence/T11-network-isolation-PASS.png","","challenge_front verified as an internal bridge network; challenge containers were isolated from the control database and challenge-web could not resolve mariadb"
+"2026-10-11","T12","Hashen","","Local Docker","PASS","evidence/T12-resource-limits-PASS.png","","Configured CPU and memory limits were visible during bounded challenge-web load and CTFd remained responsive with HTTP 200"
+"2026-10-10","T13","Hashen","","Local Docker + CTFd","PASS","","","Web container was recreated; temporary state was removed and service returned successfully with expected redirect"
+"2026-10-11","T14","Hashen","","Local Docker NF06","PASS","evidence/T14-NF06-reset-PASS.png","","NF06 container was recreated after modifying the writable helper; original summary plugin content and expected challenge state returned"
+"2026-10-11","T15","Hashen","","Local Docker + CTFd","PASS","evidence/T03-after-NF05.png; evidence/T15-NF05-solved.png; evidence/T15-NF06-solved.png","","Fresh integrated progression completed through NF06; NF05 and NF06 final submissions were accepted by CTFd after integration defects were resolved"
+"2026-10-10","T16","Hashen","","Local Docker + MariaDB","PASS","","","Database backup restored into isolated ctfd_restore_test database; 26 tables"

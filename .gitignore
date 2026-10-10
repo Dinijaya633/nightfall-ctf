@@ -14,3 +14,15 @@ tools/
 # IntelliJ IDEA
 .idea/
 *.iml
+
+# Local secrets and sensitive backup artefacts
+.env
+.env.*
+!.env.example
+*.bak
+*.backup
+*.pem
+*.key
+flags.json
+ctfd-backup.sql
+evidence/T16-backup/
