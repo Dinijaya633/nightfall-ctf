@@ -9,12 +9,12 @@ date,test_id,tester,commit,environment,result,evidence,defect_id,note
 ,T05,,,,NOT RUN,,,NF01/NF02 source present; live/steghide verification still required
 ,T06,,,,NOT RUN,,,NF03 code path present; live test required
 ,T07,,,,NOT RUN,,,NF03 code path present; live negative test required
-,T08,,,,BLOCKED,,D002,NF04 evidence files absent
-,T09,,,,BLOCKED,,D003,NF05 crypto files absent
-,T10,,,,BLOCKED,,D004,NF06 privilege path absent
+2026-10-10,T08,Hashen,,Local Docker + CTFd,FAIL,evidence/T08-nf04-stream.png,D010,NF04 packet/log hand-off is recoverable but artifact-derived proof does not match the configured CTFd flag
+2026-10-10,T09,Hashen,,Local Docker + CTFd,BLOCKED,,D011,NF05 artefacts are present but reference solver or complete encrypted-file format specification is still missing
+2026-10-10,T10,Hashen,,Local Docker + CTFd,PARTIAL,,,"NF06 container starts; sudo exists; final flag file exists; intended escalation and alternative-path testing still required"
 ,T11,,,,NOT RUN,,,Live Docker network test required
 ,T12,,,,NOT RUN,,,Live Docker resource test required
-,T13,,,,NOT RUN,,,Live reset test required
-,T14,,,,BLOCKED,,D004,NF06 implementation incomplete
-,T15,,,,BLOCKED,,D002;D003;D004,End-to-end path incomplete
+2026-10-10,T13,Hashen,,Local Docker + CTFd,PASS,,,Web container was recreated; temporary state was removed and service returned successfully with expected redirect
+2026-10-10,T14,Hashen,,Local Docker + CTFd,PASS,,,Linux container was destroyed and recreated; temporary state was removed while sudo and final flag state returned correctly
+2026-10-10,T15,Hashen,,Local Docker + CTFd,BLOCKED,,D006;D010;D011,End-to-end release path cannot pass until host-port and NF04/NF05 defects are resolved
 ,T16,,,,NOT RUN,,,CTFd/database backup required

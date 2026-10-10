@@ -1,10 +1,12 @@
 defect_id,severity,test_id,summary,owner,status,retest_result
 D001,Critical,T04,Hard-coded flags/credentials/control secrets in repository,Relevant owners,OPEN,
-D002,High,T08,NF04 evidence artefacts missing,Member 3,OPEN,
-D003,High,T09,NF05 crypto artefacts missing,Member 3,OPEN,
-D004,High,T10,NF06 designed privilege path/final flag not implemented,Member 3,OPEN,
+D002,High,T08,NF04 evidence artefacts missing,Member 3,FIXED,Artefacts added and detected by static integration test; functional T08 still fails under D010
+D003,High,T09,NF05 crypto artefacts missing,Member 3,FIXED,Artefacts added and detected by static integration test; T09 still blocked by D011
+D004,High,T10,NF06 designed privilege path/final flag not implemented,Member 3,FIXED,Static check passes; T14 reset passed; T10 intended escalation and alternative-path validation remains partial
 D005,Medium,T03,CTFd challenge metadata/requirements not versioned or evidenced,Member 4,OPEN,
-D006,Medium,T15,OSINT host port 8082 differs from approved architecture description,Member 1 + Member 4,OPEN,
+D006,Medium,T15,NF01 host port 8082 is not published at runtime despite valid Compose mapping,Member 1 + Member 4,OPEN,Container returns HTTP 200 internally but host 8082 is unreachable and docker port is blank
 D007,Low,T15,README service count/table inconsistent with Compose,Member 4,OPEN,
 D008,Medium,T11,Stale challenge_front backup shows Internal=false,Member 1 + Member 4,OPEN,
 D009,Medium,T04,Repository ignore rules did not cover common secret/backup files,Member 4,FIXED_PENDING_REVIEW,
+D010,High,T08,NF04 artifact-derived proof does not match configured CTFd flag,Member 3,OPEN,
+D011,High,T09,NF05 reference solver or complete encrypted-file format specification is missing,Member 3,OPEN,

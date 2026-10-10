@@ -63,11 +63,17 @@ if "INTENTIONAL CTF VULNERABILITY" in app_text and "assigned_incidents" in app_t
     ok("NF03 intentional authorization flaw is documented in source")
 else: errors += fail("NF03 intended authorization flaw marker missing")
 
-nf04 = [ROOT / "nightfall_capture.pcapng", ROOT / "access.log"]
+nf04 = [
+    ROOT / "challenge-forensics/nightfall_capture.pcapng",
+    ROOT / "challenge-forensics/access.log",
+]
 if any(p.exists() for p in nf04): ok("Some NF04 artefact exists")
 else: print("[BLOCKED] NF04 artefacts are absent from this snapshot")
 
-if any((ROOT / name).exists() for name in ("nightfall.enc", "keygen.txt")):
+if any(
+    (ROOT / "challenge-crypto" / name).exists()
+    for name in ("nightfall.enc", "keygen.txt")
+):
     ok("Some NF05 artefact exists")
 else: print("[BLOCKED] NF05 artefacts are absent from this snapshot")
 
