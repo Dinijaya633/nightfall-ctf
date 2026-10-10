@@ -1,0 +1,13 @@
+id,risk,probability,impact,preventive_control,contingency
+R01,Control data exposed to challenge container,Low,Critical,Separate networks; no DB host port; connectivity tests,Stop event and rotate secrets
+R02,Container escape or host access,Low,Critical,No privileged mode; no Docker socket; no host devices/bind mounts,Stop host; preserve logs; rebuild clean
+R03,Outbound attack traffic,Medium,Critical,Internal challenge network and synthetic targets only,Disconnect challenge network
+R04,Flag or credential leaked in source/report,High,High,Private secret storage; repository secret scan; rotate event values,Replace secret/flag and rebuild affected artefact
+R05,Broken stage hand-off,High,High,Integration manifest and fresh end-to-end test,Patch and retest
+R06,Challenge too difficult,Medium,Medium,Pilot testers; progressive hints; time budget,Release next hint or adjust penalty
+R07,Challenge too easy or guessable,Medium,Medium,Decoys; multi-artefact correlation; entropy review,Replace proof and improve validation
+R08,Resource exhaustion,Medium,High,CPU/memory limits and health monitoring,Restart service and reduce concurrency
+R09,Corrupt download,Low,Medium,SHA-256 manifests and read-only masters,Republish verified copy
+R10,Tool/version mismatch,Medium,Medium,Pinned/tested versions and approved alternatives,Provide compatibility note/image
+R11,Reset fails,Low,High,Disposable containers and rehearsed reset commands,Recreate from approved release
+R12,Team schedule dependency,Medium,Medium,Owners/acceptance dates/peer reviewer,Reassign review and freeze scope

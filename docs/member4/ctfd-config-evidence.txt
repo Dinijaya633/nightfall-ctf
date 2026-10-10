@@ -1,0 +1,16 @@
+CTFd Configuration Evidence - 2026-10-10
+Challenge ID | Name | Score | Requirements
+1	NF01 - Footprints in the Open	100	None
+2	NF02 - Picture Perfect Secret	125	{"prerequisites": [1]}
+3	 NF03 - Forgotten Dev Portal	175	{"prerequisites": [2]}
+4	 NF04 - Packets Do Not Lie	200	{"prerequisites": [3]}
+5	NF05 - Cipher in the Archive	272	{"prerequisites": [4]}
+6	NF06 - Root of the Breach	350	{"prerequisites": [5]}
+
+Hint counts per challenge
+1	2
+2	2
+3	2
+4	2
+5	2
+6	2

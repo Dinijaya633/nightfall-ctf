@@ -6,14 +6,15 @@ This project uses Docker Compose and CTFd.
 
 ### Services
 
-| Service        | Purpose             |          Port |
-| -------------- | ------------------- | ------------: |
-| CTFd           | CTF platform        |          8000 |
-| Web Gateway    | NF03 access         |          8081 |
-| SSH Gateway    | NF06 access         |          2222 |
-| NF03 Challenge | Web challenge       | Internal 5000 |
-| NF06 Challenge | Linux/SSH challenge |   Internal 22 |
-| MariaDB        | CTFd database       | Internal 3306 |
+| Service        | Purpose               |          Port |
+| -------------- | -------------------   | ------------: |
+| CTFd           | CTF platform          |          8000 |
+| NF01 Challenge |OSINT/static challenge |          8082 |
+| Web Gateway    | NF03 access           |          8081 |
+| SSH Gateway    | NF06 access           |          2222 |
+| NF03 Challenge | Web challenge         | Internal 5000 |
+| NF06 Challenge | Linux/SSH challenge   |   Internal 22 |
+| MariaDB        | CTFd database         | Internal 3306 |
 
 ## 1. Create Docker Networks
 
@@ -56,13 +57,17 @@ Check:
 docker compose ps
 ```
 
-All six services should be running.
+All seven services should be running.
 
 ## 3. Access the System
 
 CTFd:
 
 http://localhost:8000
+
+NF01 OSINT Challenge:
+
+http://localhost:8082
 
 NF03 Web Challenge:
 

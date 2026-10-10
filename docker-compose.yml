@@ -15,7 +15,7 @@ services:
     mem_limit: 1g
     cpus: 1.00
     environment:
-      - DATABASE_URL=mysql+pymysql://ctfd:ctfd_password@mariadb:3306/ctfd
+      - DATABASE_URL=mysql+pymysql://ctfd:${CTFD_DB_PASSWORD}@mariadb:3306/ctfd
     depends_on:
       - mariadb
 
@@ -27,10 +27,10 @@ services:
     container_name: nightfall-mariadb
     restart: unless-stopped
     environment:
-      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=ctfd
       - MYSQL_USER=ctfd
-      - MYSQL_PASSWORD=ctfd_password
+      - MYSQL_PASSWORD=${CTFD_DB_PASSWORD}
     networks:
       - control_net
     mem_limit: 512m
@@ -44,8 +44,6 @@ services:
       context: ./challenge-osint
     container_name: nightfall-challenge-osint
     restart: unless-stopped
-    ports:
-      - "8082:80"
     networks:
       - challenge_front
     mem_limit: 128m
@@ -59,6 +57,8 @@ services:
       context: ./challenge-web
     container_name: nightfall-challenge-web
     restart: unless-stopped
+    env_file:
+      - .env
     networks:
       - challenge_front
     mem_limit: 512m
@@ -72,6 +72,8 @@ services:
       context: ./challenge-linux
     container_name: nightfall-challenge-linux
     restart: unless-stopped
+    env_file:
+      - .env
     networks:
       - challenge_front
     mem_limit: 512m
@@ -86,6 +88,7 @@ services:
     restart: unless-stopped
     ports:
       - "8081:8081"
+      - "8082:8082"
     volumes:
       - ./gateway-web/nginx.conf:/etc/nginx/nginx.conf:ro
     networks:
@@ -93,6 +96,7 @@ services:
       - challenge_front
     depends_on:
       - challenge-web
+      - challenge-osint
     mem_limit: 128m
     cpus: 0.25
 
@@ -132,3 +136,4 @@ networks:
 
   nightfall_ingress:
     external: true
+

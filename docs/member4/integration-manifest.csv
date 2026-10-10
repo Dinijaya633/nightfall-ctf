@@ -1,0 +1,7 @@
+stage,title,requires,input,output,score,hint1_penalty,hint2_penalty,current_status
+NF01,Footprints in the Open,,fictional public site,developer handle + launch-day image filename,100,10,15,IMPLEMENTED
+NF02,Picture Perfect Secret,NF01,developer handle + launch-day.jpg,low-priv account + portal route + incident reference family,125,10,20,PARTIAL_VERIFY_STEG_PAYLOAD
+NF03,Forgotten Dev Portal,NF02,route + account + incident reference pattern,evidence bundle + case ID + time window,175,15,25,IMPLEMENTED_NEEDS_LIVE_TEST
+NF04,Packets Do Not Lie,NF03,case ID + time window,archive seed + event date + encrypted bundle filename,200,15,30,BLOCKED_FILES_MISSING
+NF05,Cipher in the Archive,NF04,archive seed + event date + encrypted bundle,container-only SSH credentials + host alias,275,20,40,BLOCKED_FILES_MISSING
+NF06,Root of the Breach,NF05,lab-only SSH credentials,final master flag + attack-path explanation,350,25,50,BLOCKED_INCOMPLETE_IMPLEMENTATION

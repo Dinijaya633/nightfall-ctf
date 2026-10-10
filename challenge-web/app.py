@@ -1,14 +1,15 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, session
 
 app = Flask(__name__)
-app.secret_key = "nightfall-development-session-key"
+app.secret_key = os.environ["NF03_FLASK_SECRET"]
 
 # ---------------------------------------------------------
 # Synthetic CTF account supplied through the NF02 hand-off.
 # ---------------------------------------------------------
 USERS = {
     "fieldtech": {
-        "password": "Helios-0721",
+        "password": os.environ["NF03_PASSWORD"],
         "display_name": "Field Operations Technician",
         "clearance": "FIELD-1",
         "assigned_incidents": [1042],
@@ -54,7 +55,7 @@ INCIDENTS = {
             "the incident-record service. Restricted programme records "
             "were accessible through direct object references."
         ),
-        "flag": "NIGHTFALL{object_ids_are_not_authorization}",
+        "flag": os.environ["NF03_FLAG"],
 	"handoff": {
    		 "case_id": "CYG-NF-1043",
    		 "evidence_bundle": "nightfall_capture.pcapng",
