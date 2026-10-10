@@ -17,4 +17,4 @@ date,test_id,tester,commit,environment,result,evidence,defect_id,note
 2026-10-10,T13,Hashen,,Local Docker + CTFd,PASS,,,Web container was recreated; temporary state was removed and service returned successfully with expected redirect
 2026-10-10,T14,Hashen,,Local Docker + CTFd,PASS,,,Linux container was destroyed and recreated; temporary state was removed while sudo and final flag state returned correctly
 2026-10-10,T15,Hashen,,Local Docker + CTFd,BLOCKED,,D006;D010;D011,End-to-end release path cannot pass until host-port and NF04/NF05 defects are resolved
-,T16,,,,NOT RUN,,,CTFd/database backup required
+2026-10-10,T16,Hashen,,Local Docker + MariaDB,PASS,,,Database backup restored into isolated ctfd_restore_test database; 26 tables, 6 challenges, 12 hints, score total and requirement counts matched the original database

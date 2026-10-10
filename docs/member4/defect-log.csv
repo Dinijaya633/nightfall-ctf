@@ -10,3 +10,4 @@ D008,Medium,T11,Stale challenge_front backup shows Internal=false,Member 1 + Mem
 D009,Medium,T04,Repository ignore rules did not cover common secret/backup files,Member 4,FIXED_PENDING_REVIEW,
 D010,High,T08,NF04 artifact-derived proof does not match configured CTFd flag,Member 3,OPEN,
 D011,High,T09,NF05 reference solver or complete encrypted-file format specification is missing,Member 3,OPEN,
+D012,Medium,T15,CTFd configured challenge score total is 1222 while approved NIGHTFALL design total is 1225,Member 4 + Relevant challenge owner,OPEN,Configuration/documentation consistency correction required before final release
