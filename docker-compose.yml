@@ -1,4 +1,4 @@
-services:
+﻿services:
 
   # =========================
   # CTFd CONTROL PLANE
@@ -28,6 +28,8 @@ services:
     image: mariadb:11.4
     container_name: nightfall-mariadb
     restart: unless-stopped
+    volumes:
+      - mariadb_data:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=ctfd
@@ -139,3 +141,6 @@ networks:
   nightfall_ingress:
     external: true
 
+
+volumes:
+  mariadb_data:
