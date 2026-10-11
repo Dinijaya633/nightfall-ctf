@@ -1,0 +1,99 @@
+﻿/* ===== NIGHTFALL animations ===== */
+
+::selection { background: rgba(0,229,255,.3); color: #fff; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #060911; }
+::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #00e5ff; }
+
+@keyframes nf-fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes nf-border  { from { background-position: 0% 50%; } to { background-position: 200% 50%; } }
+@keyframes nf-scan    { from { transform: translateY(-140px); } to { transform: translateY(100vh); } }
+@keyframes nf-blink   { 50% { opacity: 0; } }
+@keyframes nf-pulse   { 0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); } 50% { box-shadow: 0 0 16px 0 rgba(34,197,94,.35); } }
+@keyframes nf-type    { from { width: 0; } to { width: 100%; } }
+
+/* Page content fades in */
+body > .jumbotron, body > .container, body > main {
+  animation: nf-fade-up .6s ease both;
+}
+
+/* Animated gradient line under the navbar */
+.navbar { position: relative; }
+.navbar::after {
+  content: ""; position: absolute; left: 0; bottom: -1px; width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, #00e5ff, transparent, #00e5ff, transparent);
+  background-size: 200% 100%;
+  animation: nf-border 6s linear infinite;
+}
+
+/* Glowing logo */
+.navbar-brand img { filter: drop-shadow(0 0 6px rgba(0,229,255,.55)); transition: filter .3s; }
+.navbar-brand:hover img { filter: drop-shadow(0 0 12px rgba(0,229,255,.9)); }
+
+/* Slow CRT-style scanline sweeping down the screen */
+body::after {
+  content: ""; position: fixed; left: 0; right: 0; top: 0; height: 140px;
+  background: linear-gradient(180deg, transparent, rgba(0,229,255,.05), transparent);
+  pointer-events: none; z-index: 9999;
+  animation: nf-scan 8s linear infinite;
+}
+
+/* Blinking terminal cursor after page titles */
+h1::after {
+  content: "_"; color: #00e5ff; margin-left: 6px;
+  animation: nf-blink 1s steps(1) infinite;
+}
+
+/* Challenge cards */
+.challenge-button { animation: nf-fade-up .5s ease both; }
+.challenge-button.challenge-solved { animation: nf-fade-up .5s ease both, nf-pulse 3s ease-in-out infinite; }
+
+/* Flag input glow when focused */
+input[name="answer"]:focus, #challenge-input:focus {
+  box-shadow: 0 0 0 2px rgba(0,229,255,.25), 0 0 18px rgba(0,229,255,.25) !important;
+}
+
+/* Buttons: lift + glow */
+.btn-primary, .btn-success { transition: transform .15s, box-shadow .15s; }
+.btn-primary:hover, .btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,229,255,.35);
+}
+
+/* Modal slide-in */
+.modal.fade .modal-dialog { transform: translateY(24px) scale(.97); transition: transform .3s ease, opacity .3s ease; }
+.modal.show .modal-dialog { transform: none; }
+
+/* Scoreboard rows slide in one by one */
+.table tbody tr { animation: nf-fade-up .4s ease both; }
+.table tbody tr:nth-child(1) { animation-delay: .05s; }
+.table tbody tr:nth-child(2) { animation-delay: .10s; }
+.table tbody tr:nth-child(3) { animation-delay: .15s; }
+.table tbody tr:nth-child(4) { animation-delay: .20s; }
+.table tbody tr:nth-child(5) { animation-delay: .25s; }
+.table tbody tr:nth-child(6) { animation-delay: .30s; }
+.table tbody tr:nth-child(n+7) { animation-delay: .35s; }
+
+/* Terminal block for the home page */
+.nf-term {
+  max-width: 760px; margin: 0 auto 40px; padding: 22px 26px;
+  background: rgba(6,9,17,.85); border: 1px solid #1f2937; border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0,229,255,.08);
+  font-family: 'JetBrains Mono', Consolas, monospace; font-size: 14px; color: #94a3b8; text-align: left;
+}
+.nf-term .ln { overflow: hidden; white-space: nowrap; width: 0; animation: nf-type 1.2s steps(40) forwards; }
+.nf-term .ln:nth-child(1) { animation-delay: .3s; }
+.nf-term .ln:nth-child(2) { animation-delay: 1.7s; }
+.nf-term .ln:nth-child(3) { animation-delay: 3.1s; }
+.nf-term .ln:nth-child(4) { animation-delay: 4.5s; }
+.nf-term .ln:nth-child(5) { animation-delay: 5.9s; }
+.nf-term b { color: #00e5ff; font-weight: 600; }
+.nf-term .ok { color: #22c55e; }
+.nf-term .cur::after { content: "_"; color: #00e5ff; animation: nf-blink 1s steps(1) infinite; }
+
+/* Respect users who turn animations off */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .nf-term .ln { width: 100%; }
+}

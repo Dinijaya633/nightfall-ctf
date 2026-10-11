@@ -1,0 +1,56 @@
+﻿/* ===== NIGHTFALL effects ===== */
+
+/* ---------- Boot screen ---------- */
+#nf-boot {
+  position: fixed; inset: 0; z-index: 100003; background: #03060c;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', Consolas, monospace; transition: opacity .5s ease;
+}
+#nf-boot.nf-out { opacity: 0; pointer-events: none; }
+#nf-boot .nf-boot-box { width: min(620px, 90%); }
+#nf-boot .nf-boot-title { color: #00e5ff; letter-spacing: .25em; font-size: 15px; margin-bottom: 18px; text-shadow: 0 0 12px rgba(0,229,255,.6); }
+#nf-boot .nf-boot-log { min-height: 150px; color: #94a3b8; font-size: 13px; line-height: 1.9; }
+#nf-boot .nf-boot-log .ok { color: #22c55e; }
+#nf-boot .nf-boot-log .hi { color: #00e5ff; }
+#nf-boot .nf-boot-bar { height: 4px; background: #0b1220; border-radius: 3px; overflow: hidden; margin-top: 16px; }
+#nf-boot .nf-boot-fill { height: 100%; width: 0; background: #00e5ff; box-shadow: 0 0 12px #00e5ff; transition: width .25s linear; }
+#nf-boot .nf-boot-skip { margin-top: 14px; color: #475569; font-size: 11px; letter-spacing: .2em; }
+
+/* ---------- Glitch titles ---------- */
+@keyframes nf-glitch {
+  0%, 89%, 100% { text-shadow: 0 0 18px rgba(0,229,255,.45); transform: none; }
+  90% { text-shadow: -3px 0 #ff2d55, 3px 0 #00e5ff; transform: skewX(-6deg); }
+  92% { text-shadow: 3px 0 #ff2d55, -3px 0 #00e5ff; transform: skewX(5deg) translateX(3px); }
+  94% { text-shadow: -2px 1px #ff2d55, 2px -1px #00e5ff; transform: skewX(-3deg); }
+  96% { text-shadow: 2px 0 #00e5ff, -2px 0 #ff2d55; transform: translateX(-3px); }
+  98% { text-shadow: 0 0 18px rgba(0,229,255,.45); transform: none; }
+}
+.jumbotron h1, .nf-board h3 { animation: nf-glitch 5s infinite; }
+.jumbotron h1:hover, .nf-board h3:hover { animation-duration: .6s; }
+
+/* ---------- Live scoreboard box ---------- */
+.nf-board {
+  max-width: 760px; margin: 0 auto 40px; padding: 20px 26px;
+  background: rgba(6,9,17,.85); border: 1px solid #1f2937; border-radius: 10px;
+  box-shadow: 0 0 30px rgba(0,229,255,.08);
+  font-family: 'JetBrains Mono', Consolas, monospace;
+}
+.nf-board h3 {
+  margin: 0 0 14px; font-size: 14px; letter-spacing: .25em; text-transform: uppercase;
+  color: #00e5ff !important; display: flex; justify-content: space-between; align-items: center;
+}
+.nf-live { color: #22c55e; font-size: 11px; letter-spacing: .2em; }
+.nf-live::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+  background: #22c55e; margin-right: 6px; box-shadow: 0 0 8px #22c55e; animation: nf-blink 1.4s steps(1) infinite; }
+.nf-row {
+  display: grid; grid-template-columns: 44px 1fr auto; gap: 10px; align-items: center;
+  padding: 10px 12px; border-bottom: 1px solid #111827; color: #e5e7eb; font-size: 14px;
+  animation: nf-fade-up .4s ease both;
+}
+.nf-row:last-child { border-bottom: 0; }
+.nf-row .nf-rank { color: #64748b; font-weight: 700; }
+.nf-row:nth-child(1) .nf-rank { color: #facc15; }
+.nf-row:nth-child(2) .nf-rank { color: #cbd5e1; }
+.nf-row:nth-child(3) .nf-rank { color: #d97706; }
+.nf-row .nf-score { color: #00e5ff; font-weight: 700; letter-spacing: .08em; }
+.nf-empty { color: #64748b; font-size: 13px; text-align: center; padding: 10px 0; }

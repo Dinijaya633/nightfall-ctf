@@ -1,0 +1,28 @@
+﻿/* ===== NIGHTFALL grid layout ===== */
+.nf-grid-board {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 10px 28px;
+  align-items: start;
+  max-width: 100% !important;
+}
+.nf-grid-board > * {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.nf-grid-board .category-header { margin: 18px 0 10px !important; }
+.nf-grid-board .category-header h3 { font-size: 1rem !important; margin: 0 !important; }
+.nf-grid-board [class*="col-md-"] {
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+.nf-grid-board .challenge-button {
+  width: 100% !important;
+  min-height: 100px !important;
+  margin-bottom: 14px;
+}
+.nf-grid-board .challenges-row { margin: 0 !important; }

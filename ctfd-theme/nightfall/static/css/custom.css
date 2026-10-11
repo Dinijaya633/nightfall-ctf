@@ -1,0 +1,136 @@
+:root {
+  --nf-bg: #0a0e1a;
+  --nf-panel: #111827;
+  --nf-accent: #00e5ff;
+  --nf-accent-dim: #0891b2;
+  --nf-text: #e5e7eb;
+  --nf-muted: #94a3b8;
+}
+
+body {
+  background: var(--nf-bg) !important;
+  color: var(--nf-text) !important;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.navbar, .navbar-dark {
+  background: #060911 !important;
+  border-bottom: 1px solid #1f2937;
+}
+
+.navbar-brand, h1, h2, h3, .challenge-name {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  letter-spacing: 0.02em;
+}
+
+h1, h2 { color: var(--nf-accent) !important; }
+
+a { color: var(--nf-accent) !important; }
+a:hover { color: #67e8f9 !important; }
+
+.btn-primary {
+  background: var(--nf-accent) !important;
+  border-color: var(--nf-accent) !important;
+  color: #001018 !important;
+  font-weight: 600;
+}
+
+.card, .jumbotron, .challenge-button {
+  background: var(--nf-panel) !important;
+  border: 1px solid #1f2937 !important;
+  border-radius: 8px;
+}
+
+.challenge-solved { border-left: 4px solid #22c55e !important; }
+.challenge-unsolved { border-left: 4px solid var(--nf-accent) !important; }
+
+/* Scoreboard */
+.table thead { background: #0f172a !important; color: var(--nf-accent) !important; }
+.table tbody tr:nth-child(odd) { background: #0b1220 !important; }
+.table tbody tr:nth-child(even) { background: #0f172a !important; }
+
+/* Inputs */
+input, textarea, select {
+  background: #0b1220 !important;
+  border: 1px solid #1f2937 !important;
+  color: var(--nf-text) !important;
+}
+input:focus { border-color: var(--nf-accent) !important; box-shadow: 0 0 0 2px rgba(0,229,255,.15); }
+/* ========================================
+   NIGHTFALL polish
+   ======================================== */
+
+/* Subtle grid background on body */
+body {
+  background-color: #0a0e1a !important;
+  background-image:
+    radial-gradient(ellipse at 50% -10%, rgba(0,229,255,0.06), transparent 60%),
+    linear-gradient(rgba(31,41,55,0.35) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31,41,55,0.35) 1px, transparent 1px);
+  background-size: 100% 100%, 48px 48px, 48px 48px;
+  background-attachment: fixed;
+}
+
+.navbar-brand img { max-height: 42px; }
+.navbar-brand { display: flex; align-items: center; gap: 10px; }
+
+.challenge-button {
+  background: #111827 !important;
+  border: 1px solid #1f2937 !important;
+  border-left: 4px solid #00e5ff !important;
+  border-radius: 6px !important;
+  transition: all 0.15s ease;
+  padding: 18px 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #e5e7eb !important;
+}
+.challenge-button:hover {
+  border-left-color: #67e8f9 !important;
+  box-shadow: 0 0 0 1px rgba(0,229,255,0.35), 0 4px 16px rgba(0,229,255,0.15);
+  transform: translateY(-1px);
+}
+.challenge-button.challenge-solved {
+  border-left-color: #22c55e !important;
+  opacity: 0.85;
+}
+
+h2, .category-header {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  color: #00e5ff !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  border-bottom: 1px solid #1f2937;
+  padding-bottom: 8px;
+  margin-top: 30px;
+}
+
+.modal-content {
+  background: #0f172a !important;
+  border: 1px solid #1f2937 !important;
+  color: #e5e7eb !important;
+}
+.modal-header, .modal-footer { border-color: #1f2937 !important; }
+.modal-title { color: #00e5ff !important; }
+
+#flag-input, input[name="answer"] {
+  font-family: 'JetBrains Mono', 'Consolas', monospace;
+  background: #0b1220 !important;
+  border: 1px solid #1f2937 !important;
+  color: #00e5ff !important;
+}
+#flag-input:focus { border-color: #00e5ff !important; box-shadow: 0 0 0 2px rgba(0,229,255,0.15); }
+
+.btn, button { font-family: 'Inter', 'Segoe UI', sans-serif; border-radius: 6px; }
+.btn-success { background: #22c55e !important; border-color: #22c55e !important; color: #001018 !important; font-weight: 700; }
+.btn-danger { background: #ef4444 !important; border-color: #ef4444 !important; color: #fff !important; font-weight: 700; }
+.btn-secondary { background: #1f2937 !important; border-color: #374151 !important; color: #e5e7eb !important; }
+
+.table { color: #e5e7eb !important; border-color: #1f2937 !important; }
+.table td, .table th { border-color: #1f2937 !important; vertical-align: middle; }
+.table tbody tr:hover { background: #1a2337 !important; }
+
+.badge { font-family: 'JetBrains Mono', monospace; letter-spacing: 0.04em; }
+
+footer, .footer, .container > .row:last-child { color: #64748b !important; }
