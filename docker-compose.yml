@@ -18,6 +18,8 @@ services:
       - DATABASE_URL=mysql+pymysql://ctfd:${CTFD_DB_PASSWORD}@mariadb:3306/ctfd
     depends_on:
       - mariadb
+    volumes:
+      - ./ctfd-theme/nightfall:/opt/CTFd/CTFd/themes/nightfall:ro
 
   # =========================
   # DATABASE

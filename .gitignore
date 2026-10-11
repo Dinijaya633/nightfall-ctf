@@ -26,3 +26,7 @@ tools/
 flags.json
 ctfd-backup.sql
 evidence/T16-backup/
+
+# Member 1 additions
+*.sql
+docker-compose.yml.bak*
