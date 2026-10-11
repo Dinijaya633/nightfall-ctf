@@ -82,4 +82,21 @@ try {
 }
 
 Write-Host ""
+
+Write-Host ""
+Write-Host "Challenge pages (HTTP):" -ForegroundColor Yellow
+foreach ($u in @(
+    @{Url='http://localhost:8081/incident-review'; Label='NF03 Incident Review'},
+    @{Url='http://localhost:8082/';                Label='NF01/NF02 OSINT site'}
+)) {
+    try {
+        $r = Invoke-WebRequest -Uri $u.Url -UseBasicParsing -TimeoutSec 5
+        Write-Host ("  [ OK ] {0} (HTTP {1})" -f $u.Label, $r.StatusCode) -ForegroundColor Green
+    } catch {
+        Write-Host ("  [FAIL] {0}" -f $u.Label) -ForegroundColor Red
+    }
+}
+
+Write-Host ""
 Write-Host "Done." -ForegroundColor Cyan
+
